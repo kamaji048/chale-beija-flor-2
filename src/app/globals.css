@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ——— Tema Serra/Mantiqueira ——— */
+:root{
+  --cream:#FAF7F2;
+  --moss:#6B3FA0;
+  --sage:#87A68A;
+  --terracotta:#3F6B4E;
+  --wood:#3F6B4E;
+  --charcoal:#2F3437;
+
+  --background:var(--cream);
+  --foreground:var(--charcoal);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-color-scheme: dark){
+  :root{
+    --background:#0f1111;
+    --foreground:#e7e7e7;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+html{scroll-behavior:smooth}
+body{
+  background:var(--background);
+  color:var(--foreground);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
 }
+
+/* utilitários */
+@utility container{max-width:72rem;margin-inline:auto;padding-inline:1rem;}
+
+/* Cartões “papel” – REMOVIDO o @apply shadow-soft */
+.card-paper{
+  @apply rounded-2xl bg-white border border-neutral-200;
+  box-shadow: 0 6px 20px rgba(0,0,0,.06); /* sombra direta */
+}
+
+/* Botões e badges */
+.badge{ @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm border; }
+.btn{ @apply inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-medium transition; }
+.btn-primary{ background:var(--moss); color:#fff; }
+.btn-primary:hover{ filter:brightness(0.95); }
+.btn-outline{ border:1px solid var(--moss); color:var(--moss); }
+.btn-outline:hover{ background:#eef4ef; } /* verde clarinho */
+
+/* (Opcional) utilitário de sombra custom p/ usar no HTML, não em @apply */
+@utility shadow-soft { box-shadow: 0 6px 20px rgba(0,0,0,.06); }
