@@ -1,49 +1,81 @@
 @import "tailwindcss";
 
-/* ——— Tema Serra/Mantiqueira ——— */
+/* ——— Paleta Serra/Mantiqueira ——— */
 :root{
-  --cream:#FAF7F2;
-  --moss:#6B3FA0;
-  --sage:#87A68A;
-  --terracotta:#3F6B4E;
-  --wood:#3F6B4E;
-  --charcoal:#2F3437;
+  /* base clara e tipografia */
+  --cream:       #FAF7F2;     /* fundo */
+  --charcoal:    #2F3437;     /* texto principal */
+  --muted:       #6B7280;     /* textos secundários */
 
-  --background:var(--cream);
-  --foreground:var(--charcoal);
+  /* identidade (sem roxo como primária) */
+  --sage:        #7FAE95;     /* verde sálvia (principal) */
+  --wood:        #3F6B4E;     /* verde madeira (hover/escuro) */
+  --accent:      #7C66A5;     /* lilás suave – só pra detalhes, se quiser */
+  --wa:          #25D366;     /* WhatsApp */
 }
 
-@media (prefers-color-scheme: dark){
-  :root{
-    --background:#0f1111;
-    --foreground:#e7e7e7;
-  }
-}
+html { scroll-behavior: smooth; }
 
-html{scroll-behavior:smooth}
 body{
-  background:var(--background);
-  color:var(--foreground);
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
+  background: var(--cream);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* utilitários */
-@utility container{max-width:72rem;margin-inline:auto;padding-inline:1rem;}
+/* utilitário container (igual estava) */
+@utility container { max-width: 72rem; margin-inline: auto; padding-inline: 1rem; }
 
-/* Cartões “papel” – REMOVIDO o @apply shadow-soft */
+/* cartões papel (agora realmente “papel” claro) */
 .card-paper{
   @apply rounded-2xl bg-white border border-neutral-200;
-  box-shadow: 0 6px 20px rgba(0,0,0,.06); /* sombra direta */
+  box-shadow: 0 6px 20px rgba(0,0,0,.06);
 }
 
-/* Botões e badges */
-.badge{ @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm border; }
+/* BOTÕES */
 .btn{ @apply inline-flex items-center gap-2 px-5 py-3 rounded-2xl font-medium transition; }
-.btn-primary{ background:var(--moss); color:#fff; }
-.btn-primary:hover{ filter:brightness(0.95); }
-.btn-outline{ border:1px solid var(--moss); color:var(--moss); }
-.btn-outline:hover{ background:#eef4ef; } /* verde clarinho */
 
-/* (Opcional) utilitário de sombra custom p/ usar no HTML, não em @apply */
-@utility shadow-soft { box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+.btn-primary{
+  background: var(--sage);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(127,174,149,.25);
+}
+.btn-primary:hover{ background: var(--wood); }
+
+/* contorno com contraste correto */
+.btn-outline{
+  border: 1px solid var(--wood);
+  color: var(--wood);
+  background: #ffffff;
+}
+.btn-outline:hover{
+  background: var(--wood);
+  color: #ffffff;
+}
+
+/* CTA em degradê (sem depender de from/to do Tailwind) */
+.bg-cta {
+  background: linear-gradient(90deg, var(--sage) 0%, var(--wood) 100%);
+  color: #fff;
+}
+
+/* badge (se quiser usar) */
+.badge{ @apply inline-flex items-center gap-2 px-3 py-1.5 rounded-xl text-sm border; }
+
+.btn-cta{
+  background: #ffffff;
+  color: var(--wood);        /* garante o texto escuro */
+  box-shadow: 0 4px 14px rgba(0,0,0,.08);
+}
+.btn-cta:hover{
+  background: #ffffff;
+  filter: brightness(.96);
+}
+
+/* FAB do WhatsApp (sempre legível) */
+.whats-fab{
+  background: var(--wa);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(37,211,102,.35);
+}
+.whats-fab:hover{ filter: brightness(.95); }
